@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>quizz_result page</title>
+  <style>
+
+
+    .button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+
+
+@font-face {
+  font-family: 'Rocher';
+  src: url(https://assets.codepen.io/9632/RocherColorGX.woff2);
+}
+
+body {
+  font-family: 'Rocher';
+  /* text-align: center; */
+  font-size: 50px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin:30px;
+  /* align-items: center; */
+  /* justify-content: center; */
+    cursor: url('/images/cursor.png'), default;
+
+
+}
+
+
+h1 {
+  margin: 0;
+}
+
+@font-palette-values --Grays {
+  font-family: Rocher;
+  base-palette: 9;
+}
+
+@font-palette-values --Purples {
+  font-family: Rocher;
+  base-palette: 6;
+}
+
+@font-palette-values --Mint {
+  font-family: Rocher;
+  base-palette: 7;
+}
+
+.grays {
+  font-palette: --Grays;
+}
+
+.purples {
+  font-palette: --Purples;
+}
+
+.mint {
+  font-palette: --Mint;
+}
+
+body{
+  background: linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);
+} 
+
+
+  </style>
+  </head>
+  <body>  
+    <h1 class="mint">Result page </h1>
+  <ol>
+      <% users.forEach( st => {  %>
+          <li><%= st.username%>: <%= st.grade%></li>
+      <%})%>
+  </ol>
+  <form action="/allusers/delete" method="POST" >
+    <button class="button-85" role="button">Delete all Users</button>
+    </form>
+
+    <form action="/createnewUser/create" method="POST" >
+      <button class="button-85" role="button">Click to create new User</button>
+    </form>
+
+    <form action="/delete/username" method="POST">
+    <button class="button-85" type="submit">Delete User</button>
+    <input type="text" id="username" name="username" placeholder="Username">
+    </form>
+
+    <form action="/update/username" method="POST">
+    <button class="button-85" type="submit">Update User</button>
+    <input type="text" id="username" name="username" placeholder="Username">
+    <input type="text" id="newUsername" name="newUsername" placeholder="NewUsername">
+    </form>
+
+    <form action="/update/grade" method="POST">
+    <button class="button-85" type="submit">Update Grade</button>
+    <input type="text" id="username" name="username" placeholder="Username">
+    <input type="text" id="newGrade" name="newGrade" placeholder="New Grade">
+   </form>
+   
+  </body>
+  </html>
+
+
